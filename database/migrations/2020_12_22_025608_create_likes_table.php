@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddBodyToPost extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddBodyToPost extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->text('body');
+        Schema::create('likes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddBodyToPost extends Migration
      */
     public function down()
     {
-        Schema::table('post', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('likes');
     }
 }

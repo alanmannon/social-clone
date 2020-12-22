@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikeController;
 
 // You can remove the route name because it will inherit from the first one
 Route::get('/', function () {
@@ -24,3 +25,5 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
+
+Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
