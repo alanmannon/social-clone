@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\UserPostController;
+
 
 // You can remove the route name because it will inherit from the first one
 Route::get('/', function () {
@@ -18,6 +20,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
+
+Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
 
 Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
